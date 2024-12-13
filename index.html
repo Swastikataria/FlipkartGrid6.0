@@ -5,6 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flipkart Grid 6.0 Robotics Challenge</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+        .header-content {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .logo {
+            height: 70px;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            background-color: #edea43;
+            margin: 0;
+            width: 1540px;
+            padding: 10px 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 25px;
+        }
+        nav ul li a {
+            color: rgb(52, 3, 213);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding: 20px;
+        }
+        #welcome-section {
+            flex: 1;
+            padding: 20px;
+            text-align: left;
+        }
+        #welcome-section h2 {
+            color: #0066cc;
+        }
+        #welcome-section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        #slideshow {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        #slideshow img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: none;
+        }
+        #slideshow img.active {
+            display: block;
+        }
+        #chatbot-logo {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 70px;
+            cursor: pointer;
+        }
+        iframe {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            display: none;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Section -->
@@ -28,10 +125,61 @@
 
     <!-- Main Content -->
     <main>
-        <section>
-            <h2>Welcome!</h2>
-            <p>Click on the navigation bar items to explore individual features.</p>
+        
+        <section id="welcome-section">
+            <h2>WELCOME!</h2>
+            <p>This is team <strong>Ishitaporwal15</strong> in Flipkart Grid 6.0 Robotics Challenge.</p>
+            <p>Explore our innovative solutions:</p>
+<ul>
+    <li>Detect live data via hardware-installed image or video acquisition systems.</li>
+    <li>Swiftly determine results from live feeds and maintain comprehensive database records.</li>
+    <li>Eliminate tedious manual management with advanced inventory solutions.</li>
+    <li>Ensure accurate updates on expiry dates, brand names, freshness, item counts, and more.</li>
+    <li>Minimize human intervention to provide timely information about shelf life.</li>
+    <li>Prevent significant food wastage and enhance store management efficiency.</li>
+</ul>
+
+        </section>
+
+        <!-- Slideshow -->
+        <section id="slideshow">
+            <img src="assets/image0.jpg" alt="Hardware" class="active">
+            <img src="assets/image1.jpeg" alt="Freshness Detection">
+            <img src="assets/image2.png" alt="Freshness Detection Table">
+            <img src="assets/image3.jpg" alt="Item Counting">
+            <img src="assets/image4.jpg" alt="Brand Label Detection">
+            <img src="assets/image5.jpg" alt="Expiry Date Detection">
+
         </section>
     </main>
+
+    <!-- Chatbot -->
+    <img id="chatbot-logo" src="assets/GridBot.png" alt="Chatbot Logo" onclick="toggleChatbot()">
+
+    <!-- Chatbot iframe -->
+    <iframe id="chatbot" width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/e4a965be-8854-4288-9119-c15cd0dd805a"></iframe>
+
+    <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Slideshow logic
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('#slideshow img');
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === slideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+            slideIndex = (slideIndex + 1) % slides.length;
+        }
+
+        setInterval(showSlides, 5000);
+    </script>
 </body>
 </html>
